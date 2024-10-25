@@ -1,0 +1,45 @@
+---
+title: "TALLER 1"
+author: "Oscar Delgado"
+format: html
+editor: visual
+---
+
+## punto 1
+```{r}
+library(wooldridge)
+#nombrar variables
+
+educ<-wage1$educ
+salario<-wage1$wage
+lnsalario<-wage1$lwage
+restax<-(educ-mean(educ))
+restay<-(salario-mean(salario))
+varx<-(restax)^2
+restayLn<-(lnsalario-mean(lnsalario))
+MeanyLn<-(mean(lnsalario))
+
+#Hallar parametros
+mean(educ)
+mean(salario)
+
+#B1
+b1<-sum(restax*restay)/sum(varx)
+print(b1)
+#B0
+b0<-(mean(salario)-b1*mean(educ))
+print(b0)
+#Parametros Ln
+#B1Ln
+b1Ln<-sum(restax*restayLn)/sum(varx)
+print(b1Ln)
+#B0Ln
+boLn<-(MeanyLn-b1Ln*mean(educ))
+print(boLn)
+#1.2
+reg1<-lm(salario~educ)
+summary(reg1)
+reg2<-lm(lnsalario~educ)
+summary(reg2)
+```
+
